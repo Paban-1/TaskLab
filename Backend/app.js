@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-
+const db = require("./config/mongoose-connection")
 
 app.get("/", (req, res) => {
     res.send("working")

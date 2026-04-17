@@ -6,6 +6,8 @@ const config = require("config")
 // connect to MongoDB using the URI from config
 mongoose.connect(`${config.get("MONGODB_URI")}/tasklab`).then(function () {
     dbgr("MongoDB Connected Successfully");
+    console.log("coonnected");
+    
 }).catch(function (err) {
     dbgr("Error connecting to MongoDB:", err);
 })
