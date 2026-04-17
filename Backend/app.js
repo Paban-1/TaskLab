@@ -7,7 +7,11 @@ app.get("/", (req, res) => {
 })
 
 app.get("/add", (req, res) => {
-res.send("add")
+    res.send("add")
+})
+
+app.get("/delete", (req, res) => {
+    res.send("delete")
 })
 
 app.listen(3000, () => {
