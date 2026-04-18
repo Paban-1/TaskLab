@@ -1,18 +1,17 @@
 const express = require("express")
 const app = express()
+const cookieParser = require("cookie-parser");
+
 const db = require("./config/mongoose-connection")
 
-app.get("/", (req, res) => {
-    res.send("working")
-})
+app.use(express.json())
+app.use(cookieParser())
+app.use(express.urlencoded({ extended: true }))
 
-app.get("/add", (req, res) => {
-    res.send("add")
-})
+const userRouter = require("./routes/userRouter")
 
-app.get("/delete", (req, res) => {
-    res.send("delete")
-})
+app.use("/user", userRouter);
+
 
 app.listen(3000, () => {
     console.log("PORT is runing on :3000");
