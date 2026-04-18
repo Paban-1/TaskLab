@@ -9,8 +9,10 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
 const userRouter = require("./routes/userRouter")
+const taskRouter = require("./routes/taskRouter")
 
 app.use("/user", userRouter);
+app.use('/task', taskRouter)
 
 
 app.listen(3000, () => {
