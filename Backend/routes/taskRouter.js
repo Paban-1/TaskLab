@@ -4,6 +4,7 @@ const taskModel = require("../models/task-model")
 
 router.post('/task-create', async function (req, res) {
     let { title, description,  } = req.body
+    console.log("req.body This is:",req.body);
     
     let createdTask = await taskModel.create({
         title,
