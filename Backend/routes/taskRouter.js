@@ -24,6 +24,41 @@ router.get("/all", async function (req, res) {
 
 })
 
+router.delete("/:id", async function (req, res) {
+    try {
+        const deleteTask = await taskModel.findByIdAndDelete(req.params.id)
+
+        if (!deleteTask) {
+            return res.status(404).json({ message: "Task not found" })
+        }
+
+        res.status(200).json({ message: "Task delete successfully" })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    try {
+        const { title, description, flag } = req.body;
+
+        const updatedTask = await taskModel.findByIdAndUpdate(
+            req.params.id,
+            { title, description, flag },
+            { new: true }
+        )
+
+        if (!updatedTask) {
+            return res.status(404).json({ message: "Task not Found" })
+        }
+        res.status(200).json(updatedTask)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
 router.get('/', function (req, res) {
     res.send("hello taskRouter")
 })
