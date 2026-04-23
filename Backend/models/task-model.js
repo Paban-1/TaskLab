@@ -14,7 +14,11 @@ const taskSchema = mongoose.Schema({
         type: String,
         enum: ["pending", "in-progress", "completed"],
         default: "pending"
+    },
+    dueData: {
+        type: Date
     }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('task', taskSchema)
