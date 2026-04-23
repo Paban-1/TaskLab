@@ -63,4 +63,19 @@ router.get('/', function (req, res) {
     res.send("hello taskRouter")
 })
 
+router.get("/:id", async (req, res) => {
+  try {
+    const task = await taskModel.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    res.json(task);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 module.exports = router
